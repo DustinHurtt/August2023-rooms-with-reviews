@@ -1,0 +1,22 @@
+<h2>Add a Room</h2>
+
+<form action="/rooms/new" method="post">
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description">
+
+    <label for="imageUrl">Image</label>
+    <input type="text" name="imageUrl" id="imageUrl">
+
+    <button type="submit">Add Room</button>
+
+</form>
+
+
+    {{!-- name: { type: String },
+    description: { type: String },
+    imageUrl: { type: String },
+    owner: { type: Schema.Types.ObjectId, ref: "User" }, --}}
