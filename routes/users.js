@@ -1,9 +1,23 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/profile', (req, res, next) => {
+const Room = require('../models/Room')
 
-  res.render('user/profile.hbs', req.session.user)
+const { isLoggedIn } = require('../middleware/route-guard')
+
+router.get('/profile', isLoggedIn, (req, res, next) => {
+
+  Room.find({
+    owner: req.session.user._id
+  })
+  .then((rooms) => {
+    console.log("Found rooms ==>", rooms)
+    res.render('user/profile.hbs', {user: req.session.user, rooms: rooms})
+  })
+  .catch((err) => {
+    console.log(err)
+    next(err)
+  })
 
 })
 
